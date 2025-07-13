@@ -80,6 +80,12 @@ pixelSlider.addEventListener("input", debounce(resizeGrid));
 
 const pixels = [...sketchContainer.children];
 
+
+// --------------
+// MOUSE CLICK LOGIC BELOW
+// --------------
+
+
 function colorPixel(e) {
   if(e.target.classList.contains('pixel')){
     e.target.style.backgroundColor = 'red';
@@ -93,20 +99,33 @@ function erasePixel(e) {
 }
 
 let isMouseDown = false;
-let isMouseDownInContainer = false;
 let eraserActive = false;
+let isMouseDownInContainer = false;
+
+sketchContainer.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+});
 
 sketchContainer.addEventListener("mousedown", (e) => {
   isMouseDown = true;
-  colorPixel(e);
+  if(e.button === 2){
+    e.preventDefault();
+    eraserActive = true;
+    erasePixel(e);
 
-  console.log(`isMouseDown = ${isMouseDown}`);
+    return;
+  }
+
+  if(e.button === 0){
+    colorPixel(e);
+  }
 });
 
 sketchContainer.addEventListener("mouseover", (e) => {
   isMouseDownInContainer = true;
   if(isMouseDown && isMouseDownInContainer && eraserActive){
     erasePixel(e);
+    return;
   }
   if(isMouseDown && isMouseDownInContainer && !eraserActive){
     colorPixel(e);
@@ -115,21 +134,11 @@ sketchContainer.addEventListener("mouseover", (e) => {
 
 window.addEventListener("mouseup", () => {
   isMouseDown = false;
-  if(eraserActive === true){
-    eraserActive = false;
-  }
-  console.log(`isMouseDown = ${isMouseDown}`);
+  eraserActive = false;
 });
 
 // Choosing to use mouseleave instead of mouseout so interaction with child elements is negligible
 sketchContainer.addEventListener("mouseleave", () => {
   isMouseDownInContainer = false;
-
   console.log(`isMouseDown = ${isMouseDown}`);
-});
-
-sketchContainer.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-  eraserActive = true;
-  sole.log(`eraserActive: ${eraserActive}`);
 });
