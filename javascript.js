@@ -245,6 +245,7 @@ function colorPixel(e) {
 
 function erasePixel(e) {
   if(e.target.classList.contains('pixel')){
+    gridData[e.target.dataset.y][e.target.dataset.x] = '#FFFFFF';
     e.target.style.backgroundColor= '#FFFFFF';
   }
 }
