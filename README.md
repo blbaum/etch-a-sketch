@@ -2,4 +2,4 @@
 
 Here is a simple webpage that acts as an etch-a-sketch
 
-Currently a work in progress
+User can select from color palette, blend colors, and change resolution of sketch container.
