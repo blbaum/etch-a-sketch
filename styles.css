@@ -57,17 +57,28 @@ body{
   background-color: white;
 }
 
-.pixelSliderHeader{
-  margin: 0px;
-  margin-left: 0px;
-  margin-top: 14px;
+.pixelSliderHeader,
+.colorPickerHeader,
+.opacitySliderHeader,
+.instructions
+{
+  margin-top: 48px;
   padding: 0;
   color: white;
   text-align: center;
 }
 
-.pixelSlider{
-  margin-top: 4px;
-  margin-left: 12px;
-  margin-right: 12px;
+.pixelSlider,
+.colorPicker,
+.opacitySlider,
+.clearSketchButton
+{
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.clearSketchButton{
+  margin-top: auto;
+  margin-bottom: 48px;
 }
